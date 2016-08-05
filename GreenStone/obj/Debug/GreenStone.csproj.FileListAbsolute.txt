@@ -1,0 +1,75 @@
+D:\Study\OOP\Kursova\GreenStone\GreenStone\bin\Debug\GreenStone.exe.config
+D:\Study\OOP\Kursova\GreenStone\GreenStone\bin\Debug\GreenStone.exe
+D:\Study\OOP\Kursova\GreenStone\GreenStone\bin\Debug\GreenStone.pdb
+D:\Study\OOP\Kursova\GreenStone\GreenStone\bin\Debug\EntityFramework.dll
+D:\Study\OOP\Kursova\GreenStone\GreenStone\bin\Debug\EntityFramework.SqlServer.dll
+D:\Study\OOP\Kursova\GreenStone\GreenStone\bin\Debug\EntityFramework.xml
+D:\Study\OOP\Kursova\GreenStone\GreenStone\bin\Debug\EntityFramework.SqlServer.xml
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.csprojResolveAssemblyReference.cache
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\MainWindow.baml
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\MainWindow.g.cs
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\App.g.cs
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone_MarkupCompile.cache
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.g.resources
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.Properties.Resources.resources
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.csproj.GenerateResource.Cache
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.exe
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.pdb
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.Migrations.InitialCreate.resources
+D:\Study\OOP\Kursova\GreenStone\GreenStone\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+D:\Study\OOP\Kursova\GreenStone\GreenStone\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.xml
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\Themes\Brushes.baml
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\Themes\Core.baml
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\Themes\Icons.baml
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\App.baml
+D:\Study\OOP\Kursova\GreenStone\GreenStone\obj\Debug\Themes\Core.g.cs
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\bin\Debug\GreenStone.exe.config
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.exe
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.pdb
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\bin\Debug\GreenStone.exe
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\bin\Debug\GreenStone.pdb
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\bin\Debug\EntityFramework.dll
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\bin\Debug\EntityFramework.SqlServer.dll
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\bin\Debug\EntityFramework.xml
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\bin\Debug\EntityFramework.SqlServer.xml
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.xml
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.csprojResolveAssemblyReference.cache
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\MainWindow.baml
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\Themes\Brushes.baml
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\Themes\Core.baml
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\Themes\Icons.baml
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\App.baml
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\MainWindow.g.cs
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\Themes\Core.g.cs
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\App.g.cs
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone_MarkupCompile.cache
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.g.resources
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.Migrations.InitialCreate.resources
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.Properties.Resources.resources
+D:\Study\1 курс 2 семестр\OOP\Kursova\GreenStone\GreenStone\obj\Debug\GreenStone.csproj.GenerateResource.Cache
+D:\MyProjects\c#\GreenStone\GreenStone\bin\Debug\GreenStone.exe.config
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\GreenStone.exe
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\GreenStone.pdb
+D:\MyProjects\c#\GreenStone\GreenStone\bin\Debug\GreenStone.exe
+D:\MyProjects\c#\GreenStone\GreenStone\bin\Debug\GreenStone.pdb
+D:\MyProjects\c#\GreenStone\GreenStone\bin\Debug\EntityFramework.dll
+D:\MyProjects\c#\GreenStone\GreenStone\bin\Debug\EntityFramework.SqlServer.dll
+D:\MyProjects\c#\GreenStone\GreenStone\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll
+D:\MyProjects\c#\GreenStone\GreenStone\bin\Debug\EntityFramework.xml
+D:\MyProjects\c#\GreenStone\GreenStone\bin\Debug\EntityFramework.SqlServer.xml
+D:\MyProjects\c#\GreenStone\GreenStone\bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.xml
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\GreenStone.csprojResolveAssemblyReference.cache
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\MainWindow.baml
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\Themes\Brushes.baml
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\Themes\Core.baml
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\Themes\Icons.baml
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\App.baml
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\MainWindow.g.cs
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\Themes\Core.g.cs
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\App.g.cs
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\GreenStone_MarkupCompile.cache
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\GreenStone.g.resources
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\GreenStone.Migrations.InitialCreate.resources
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\GreenStone.Properties.Resources.resources
+D:\MyProjects\c#\GreenStone\GreenStone\obj\Debug\GreenStone.csproj.GenerateResource.Cache

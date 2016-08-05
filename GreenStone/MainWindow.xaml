@@ -1,0 +1,949 @@
+﻿<Window x:Class="GreenStone.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        Title="GreenStone" WindowStartupLocation="CenterScreen" Background="Black"  Name="MyForm" Height="500" Width="700" Icon="Themes/Statistics.png">
+ 
+    <Window.Resources>
+        <System:Boolean x:Key="valuebool">true</System:Boolean>
+        
+    </Window.Resources>
+    
+    <Grid>
+        <TabControl x:Name="greenstonetab">
+            <!--Головна вкладка-->
+            <TabItem x:Name="mainntab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image  Height="20" Width="20" Source="Themes/Home_icon.png"/>
+                        <TextBlock Margin="3">Головна</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            
+                            <chartingToolkit:Chart Grid.Row="0"   Title="Діаграма відділів" >
+                                <chartingToolkit:ColumnSeries x:Name="DiagramDepartment"  Title="Відділи       " DependentValuePath="Profitability" IndependentValuePath="Name" ItemsSource="{Binding DataContext.Departmentses }"  />
+                            </chartingToolkit:Chart>
+                            
+                            <chartingToolkit:Chart Grid.Row="1" Margin="0,5,0,0" Title="Діаграма робітників" >
+                                <chartingToolkit:ColumnSeries Width="Auto" Height="250" x:Name="DiagramEmployee"  Title="Робітники"  DependentValuePath="Salary" IndependentValuePath="LastName" ItemsSource="{Binding DataContext.Employees }" />
+                            </chartingToolkit:Chart>
+                        </Grid>
+                        
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1.7*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Foreground="Aqua" Grid.Row="0" Grid.Column="0" Content="Назва:"/>
+                                <Label Foreground="Aqua" Grid.Row="1" Grid.Column="0" Content="Ціна:"/>
+                                <TextBox Name="MnTxtStoneName" Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding CurrentSelectedStone.Name}"/>
+                                <TextBox Name="MnTxtStonePrice" Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding CurrentSelectedStone.StonePrice}"/>
+                            </Grid>
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,5">
+                                <Button Name="MnStoneBtnInsert" Content="Добавить" Width="60" Height="25" Margin="10,0,10,0" Click="MnStoneBtnInsert_Click"/>
+                                <Button Name="MnStoneBtnEdit" Content="Обновить" Width="60" Height="25" Margin="0,0,10,0" Click="MnStoneBtnEdit_Click" />
+                                <Button Name="MnStoneBtnDelete" Content="Удалить" Width="60" Height="25" Margin="0,0,10,0" Click="MnStoneBtnDelete_Click" />
+                            </StackPanel>
+                            <DataGrid Grid.Row="2" Name="MnDataGridStones"  Margin="5,0,0,0"
+                                          RenderOptions.ClearTypeHint="Enabled"
+                                          TextOptions.TextFormattingMode="Display"
+                                          VerticalScrollBarVisibility="Visible"
+                                          MouseDoubleClick="MnDataGridStones_MouseDoubleClick"
+                                          CanUserAddRows="False"
+                                          CanUserDeleteRows="False"
+                                          SelectionUnit="FullRow"
+                                          SelectedItem="{Binding DataContext.CurrentSelectedStone, Mode=TwoWay}"
+                                          ItemsSource="{Binding DataContext.Stones, Mode=TwoWay}"
+                                          AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <!--Column 1-->
+                                    <DataGridTextColumn Header="Id" Width="30" Binding="{Binding Id}"/>
+
+                                    <!--Column 2-->
+                                    <DataGridTextColumn Header="Назва Каміня" Binding="{Binding Name}"/>
+
+                                    <!--Column 3-->
+                                    <DataGridTextColumn Header="Ціна" Binding="{Binding StonePrice}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            
+                            <Grid Grid.Row="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1.2*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Label Foreground="Aqua"  Content="Прибуток фірми:" FontFamily="Verdana" FontSize="13" Margin="0,0,6,0"/>
+                                    <Label Foreground="Aqua" x:Name="LabelProfit" FontFamily="Verdana" FontSize="13" Content="{Binding}"/>
+                                    <Label Foreground="Aqua" Content="грн." FontFamily="Verdana" FontSize="13" Margin="0,0,6,0"/>
+                                </StackPanel>
+                                <Button Grid.Row="1" VerticalAlignment="Top"  HorizontalAlignment="Center" FontFamily="Verdana" FontSize="13"  Content="Обновити дані" Height="43" Name="UpdateButton" Width="150" Click="UpdateButton_Click" />
+                                
+                            </Grid>
+                        </Grid>
+                        
+                    </Grid>
+                </TabItem.Content>    
+            </TabItem>
+            
+            <!--Вкаладка продуктів-->
+            <TabItem x:Name="productstab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image  Height="20" Width="20" Source="Themes/Product_icon.png"/>
+                        <TextBlock Margin="3">Продукти</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions> 
+                        <!--Row 1-->
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Foreground="Aqua" Grid.Row="0" Grid.Column="0" Content="Назва:"/>
+                                <Label Foreground="Aqua" Grid.Row="1" Grid.Column="0" Content="Розмір(х*y*z):"/>
+                                <Label Foreground="Aqua" Grid.Row="2" Grid.Column="0" Content="Камінь:"/>
+                                <Label Foreground="Aqua" Grid.Row="3" Grid.Column="0" Content="Ціна:"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Name="PrTxtProductName" Margin="3" 
+                                         Text="{Binding DataContext.CurrentSelectedProduct.Name}"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Name="PrTxtProductSize" Margin="3"
+                                         Text="{Binding DataContext.CurrentSelectedProduct.Size}"/>
+                                <ComboBox Name="PrCbbStones" Grid.Row="2" Grid.Column="1" Margin="3" 
+                                      ItemsSource="{Binding DataContext.Stones}"
+                                      SelectedValuePath="Id" 
+                                      DisplayMemberPath="Name" 
+                                      SelectedValue="{Binding DataContext.CurrentSelectedProduct.StoneId}"/>
+                               
+                                <TextBox Grid.Row="3" Grid.Column="1" IsEnabled="False" Name="PrTxtProductPrice" Margin="3"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <ListView  Grid.Row="1" Name="PrDepartmentList" Margin="5,0,0,3" ItemsSource="{Binding DataContext.Departmentses }" SelectedItem="{Binding DataContext.CurrentSelectedDepartmentofProduct}" >
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
+                                                <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="120">Назва Відділу</GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <ListBox Name="PrListBoxofDpService" ItemsSource="{Binding DataContext.CurrentSelectedDepartmentofProduct.DpServices}" Background="WhiteSmoke" Margin="4,0,0,4">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <CheckBox Name="CheckBoxDpService" Content="{Binding Name }" Tag="{Binding Id}" Checked="CheckBoxDpService_Checked"  Margin="3" />
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+
+                                </Grid>
+                                <Grid Grid.Column="2">
+                                    <ListBox Name="PrListBoxofEmployee" ItemsSource="{Binding DataContext.CurrentSelectedDepartmentofProduct.Employees}" SelectedValue="CurrentSelectedEmployeeofRadioButton" Background="WhiteSmoke" Margin="4,0,0,4">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <RadioButton GroupName="Emp" Tag="{Binding Id}" Name="PrRadioButtonEmployee"  Checked="PrRadioButtonEmployee_Checked"  Margin="3" >
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label Content="{Binding FirstName}"/>
+                                                        <Label Content="{Binding LastName}"/>
+                                                    </StackPanel>
+                                                </RadioButton>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Grid>
+                               
+                            </Grid>
+                            
+                        </Grid>
+                        
+                        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,5">
+                            <Button Name="PrProductBtnInsert" Content="Добавить" Width="60" Height="25" Margin="10,0,60,0" Click="PrProductBtnInsert_Click"/>
+                            <Button Name="PrProductBtnEdit" Content="Обновить" Width="60" Height="25" Margin="0,0,10,0" Click="PrProductBtnEdit_Click" />
+                            <Button Name="PrProductBtnDelete" Content="Удалить" Width="60" Height="25" Margin="60,0,10,0" Click="PrProductBtnDelete_Click" />
+                        </StackPanel>
+
+                        <DataGrid Grid.Row="2" Name="PrDataGridProducts"  Margin="3"
+                                          RenderOptions.ClearTypeHint="Enabled"
+                                          TextOptions.TextFormattingMode="Display"
+                                          
+                                          VerticalScrollBarVisibility="Visible"
+                                          RowHeight="80"
+                                          MouseDoubleClick="PrDataGridProducts_MouseDoubleClick"
+                                          
+                                          CanUserAddRows="False"
+                                          CanUserDeleteRows="False"
+                                          SelectionUnit="FullRow"
+                                          SelectedItem="{Binding DataContext.CurrentSelectedProduct, Mode=TwoWay}"
+                                          ItemsSource="{Binding DataContext.Products, Mode=TwoWay}"
+                                          AutoGenerateColumns="False" 
+                                          >
+                            <DataGrid.Columns>
+                                <!--Column 1-->
+                                <DataGridTextColumn Header="Id Продукту" IsReadOnly="True" Width="20" Binding="{Binding Id}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="14"/>
+                                            <Setter Property="FontFamily" Value="TimesNewRoman"/>
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <!--Column 2-->
+                                <DataGridTextColumn Header="Назва Продукту" IsReadOnly="True" Binding="{Binding Name}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="14"/>
+                                            <Setter Property="FontFamily" Value="TimesNewRoman"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn> 
+
+                                <!--Column 3-->
+                                <DataGridTextColumn Header="Розмір" IsReadOnly="True" Binding="{Binding Size}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="14"/>
+                                            <Setter Property="FontFamily" Value="TimesNewRoman"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <!--Column 4-->
+                                <DataGridTextColumn Header="Ціна" IsReadOnly="True" Binding="{Binding Price}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="14"/>
+                                            <Setter Property="FontFamily" Value="TimesNewRoman"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn> 
+
+                                <!--Column 5-->
+                                <DataGridTemplateColumn Header="Камінь">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox Margin="6,25,6,25" IsEnabled="False" ItemsSource="{Binding DataContext.Stones, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                      SelectedValuePath="Id" DisplayMemberPath="Name" SelectedValue="{Binding StoneId}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <!--Column 6-->
+                                <DataGridTemplateColumn Header="Виготовлено" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate >
+                                            <CheckBox Name="CheckBoxIsmade"  Checked="CheckBoxIsmade_Checked" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsMade}" Value="{ StaticResource valuebool}">
+                                                    <Setter TargetName="CheckBoxIsmade" Property="IsChecked" Value="True"/>
+                                                    
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers> 
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    
+                                </DataGridTemplateColumn>
+
+                                <!--Column 7-->
+                                <DataGridTemplateColumn Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ListView Name="PrListBoxoinDataGridofDpServices" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ItemsSource="{Binding DpServices}"  SelectedItem="{Binding DataContext.CurrentSelectedDpServiceonPrListBoxoinDataGrid, ElementName=MyForm, Mode=TwoWay}" >
+                                                <ListView.View>
+                                                    <GridView>
+                                                        <GridViewColumn Width="150" Header="Назва послуги">
+                                                            <GridViewColumn.CellTemplate>
+                                                                
+                                                                    <DataTemplate >
+                                                                        <CheckBox Name="CheckBoxDpServiceonGrid" Content="{ Binding Name }" Tag="{Binding Id}" Checked="CheckBoxDpServiceonGrid_Checked"  Margin="0,3,0,3"  />
+                                                                    <DataTemplate.Triggers>
+                                                                        <DataTrigger Binding="{Binding Path=IsDone}" Value="{ StaticResource valuebool}">
+                                                                            <Setter TargetName="CheckBoxDpServiceonGrid" Property="IsChecked" Value="True"/>
+                                                                            <Setter TargetName="CheckBoxDpServiceonGrid" Property="IsEnabled" Value="False"/>
+
+                                                                        </DataTrigger>
+                                                                    </DataTemplate.Triggers>
+
+                                                                </DataTemplate>
+                                                                
+                                                            </GridViewColumn.CellTemplate>
+                                                        </GridViewColumn>
+                                                        <GridViewColumn  DisplayMemberBinding="{Binding Employee.FirstName }" >Імя</GridViewColumn>
+                                                        <GridViewColumn DisplayMemberBinding="{Binding Employee.LastName}">Прізвище</GridViewColumn>
+                                                        
+                                                    </GridView>
+                                                   
+                                                        
+                                                   
+                                                </ListView.View>
+                                                
+                                            </ListView>
+                                            
+                                            
+                                        </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            
+            <!--Вкладка Клієнтів-->
+            <TabItem x:Name="clienrstab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image  Height="20" Width="20" Source="Themes/Avatar_icon.png"/>
+                        <TextBlock Margin="3">Клієнти</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.9*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.6*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Foreground="Aqua" Grid.Row="0" Grid.Column="0"  Margin="0,6,0,0" Content="Id Клієнту:"/>
+                                    <Label Foreground="Aqua" Grid.Row="1" Grid.Column="0"  Margin="0,6,0,0" Content="Імя:"/>
+                                    <Label Foreground="Aqua" Grid.Row="2" Grid.Column="0"  Margin="0,6,0,0" Content="Прізвище:"/>
+                                    <Label Foreground="Aqua" Grid.Row="3" Grid.Column="0"  Margin="0,6,0,0" Content="Дата народження:"/>
+                                    <TextBox Foreground="Aqua" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="3,6,3,3" Name="ClTxtClientId"  
+                                         Text="{Binding DataContext.CurrentSelectedClient.Id}"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1"  Margin="3,6,3,3" Name="ClTxtClientFirstName" 
+                                         Text="{Binding DataContext.CurrentSelectedClient.FirstName}"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1"  Margin="3,6,3,3" Name="ClTxtClientLastName" 
+                                         Text="{Binding DataContext.CurrentSelectedClient.LastName}"/>
+                                    <DatePicker Name="ClientDtpkBirthDay"  Margin="3,6,3,3" Grid.Row="3" Grid.Column="1" 
+                                        SelectedDate="{Binding DataContext.CurrentSelectedClient.BirthDay}"/>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,4,0,18">
+                                        <Button Name="ClClientBtnInsert" Content="Добавить" Width="70" Height="35" Margin="10,0,10,0" Click="ClClientBtnInsert_Click" />
+                                        <Button Name="ClClientBtnEdit" Content="Обновить" Width="70" Height="35" Margin="0,0,10,0" Click="ClClientBtnEdit_Click" />
+                                        <Button Name="ClClientBtnDelete" Content="Удалить" Width="70" Height="35" Margin="0,0,10,0" Click="ClClientBtnDelete_Click" />
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                            <DataGrid Grid.Column="1" Name="ClDataGridClients"  Margin="3"
+                                          RenderOptions.ClearTypeHint="Enabled"
+                                          TextOptions.TextFormattingMode="Display"
+                                          VerticalScrollBarVisibility="Visible"
+                                          RowHeight="60"
+                                          MouseDoubleClick="ClDataGridClients_MouseDoubleClick"
+                                          CanUserAddRows="False"
+                                          CanUserDeleteRows="False"
+                                          SelectionUnit="FullRow"
+                                          SelectedItem="{Binding DataContext.CurrentSelectedClient, Mode=TwoWay}"
+                                          ItemsSource="{Binding DataContext.Clients, Mode=TwoWay}"
+                                          AutoGenerateColumns="False" 
+                                          >
+                                <DataGrid.Columns>
+                                    <!--Column 1-->
+                                    <DataGridTextColumn Header="Id Клієнта" IsReadOnly="True" Width="20" Binding="{Binding Id}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="FontFamily" Value="TimesNewRoman"/>
+
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+
+                                    <!--Column 2-->
+                                    <DataGridTextColumn Header="Ім'я" IsReadOnly="True" Binding="{Binding FirstName}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="FontFamily" Value="TimesNewRoman"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+
+                                    <!--Column 3-->
+                                    <DataGridTextColumn Header="Прізвище" IsReadOnly="True" Binding="{Binding LastName}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="FontFamily" Value="TimesNewRoman"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+
+                                    <!--Column 4-->
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <DatePicker VerticalAlignment="Center" HorizontalAlignment="Center" SelectedDate="{Binding BirthDay}" BorderThickness="0"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <!--Column 5-->
+                                    <DataGridTemplateColumn Width="*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ListView Name="ClListBoxoinDataGridofProduct" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ItemsSource="{Binding Products}" >
+                                                    <ListView.View>
+                                                        <GridView>
+                                                            <GridViewColumn Width="30"  DisplayMemberBinding="{Binding Id }" >Id</GridViewColumn>
+                                                            <GridViewColumn Width="60"  DisplayMemberBinding="{Binding Name }" >Назва</GridViewColumn>
+                                                            <GridViewColumn Width="60" DisplayMemberBinding="{Binding Price}">Ціна</GridViewColumn>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <DataGrid Grid.Row="0" Name="ClDataGridProducts"  Margin="3,7,3,0"
+                                          RenderOptions.ClearTypeHint="Enabled"
+                                          TextOptions.TextFormattingMode="Display"
+                                          VerticalScrollBarVisibility="Visible"
+                                          RowHeight="60"   
+                                          MouseDoubleClick="ClDataGridProducts_MouseDoubleClick"
+                                          CanUserAddRows="False"
+                                          CanUserDeleteRows="False"
+                                          SelectionUnit="FullRow"
+                                          SelectedItem="{Binding DataContext.CurrentSelectedProduct, Mode=TwoWay}"
+                                          ItemsSource="{Binding DataContext.ProductsInClient, Mode=TwoWay}"
+                                          AutoGenerateColumns="False" 
+                                          >
+                                <DataGrid.Columns>
+                                    <!--Column 1-->
+                                    <DataGridTextColumn Header="Id Продукту" IsReadOnly="True" Width="20" Binding="{Binding Id}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="FontFamily" Value="TimesNewRoman"/>
+
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+
+                                    <!--Column 2-->
+                                    <DataGridTextColumn Header="Назва Продукту" IsReadOnly="True" Binding="{Binding Name}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="FontFamily" Value="TimesNewRoman"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+
+                                    <!--Column 3-->
+                                    <DataGridTextColumn Header="Розмір" IsReadOnly="True" Binding="{Binding Size}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="FontFamily" Value="TimesNewRoman"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+
+                                    <!--Column 4-->
+                                    <DataGridTextColumn Header="Ціна" IsReadOnly="True" Binding="{Binding Price}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="FontFamily" Value="TimesNewRoman"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+
+                                    <!--Column 5-->
+                                    <DataGridTemplateColumn Header="Камінь">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox Margin="6,15,6,15" IsEnabled="False" ItemsSource="{Binding DataContext.Stones, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                      SelectedValuePath="Id" DisplayMemberPath="Name" SelectedValue="{Binding StoneId}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <!--Column 6-->
+                                    <DataGridTemplateColumn Header="Продано" >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate >
+                                                <CheckBox Name="CheckBoxIsSold" Checked="CheckBoxIsSold_Checked" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                                                <DataTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=IsSold}" Value="{ StaticResource valuebool}">
+                                                        <Setter TargetName="CheckBoxIsSold" Property="IsChecked" Value="True"/>
+
+                                                    </DataTrigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+
+                                    </DataGridTemplateColumn>
+
+                                    <!--Column 7-->
+                                    <DataGridTemplateColumn Width="100" Header="Клієнт">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox Name="ClcbClients" Margin="6,15,6,15" SelectionChanged="ClcbClients_SelectionChanged"  ItemsSource="{Binding DataContext.Clients, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                      SelectedValuePath="Id" DisplayMemberPath="LastName" SelectedValue="{Binding ClientId, Mode=TwoWay}">
+                                                </ComboBox>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,4,0,8">
+                                <Button Name="ClProductBtnUpdate" Content="Обновить" Width="70" Height="35" Margin="0,0,20,0" Click="ClProductBtnUpdate_Click" />
+                                <Button Name="ClProductBtnDelete" Content="Удалить" Width="70" Height="35" Margin="0,0,10,0" Click="ClProductBtnDelete_Click" />
+                            </StackPanel>
+                        </Grid>
+                       
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>    
+
+
+            <!--Вкладка відділів-->
+            <TabItem x:Name="departmentstab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image  Height="20" Width="20" Source="Themes/District_icon.png"/>
+                        <TextBlock Margin="3">Відділи</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="1.2*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!--Row1-->
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Foreground="Aqua" Grid.Row="0" Grid.Column="0" Content="Id Відділу:"/>
+                                    <Label Foreground="Aqua" Grid.Row="1" Grid.Column="0" Content="Назва Відділу:"/>
+                                    <TextBox Name="TxtDDepartmentId" Grid.Row="0" Grid.Column="1" Margin="5" IsEnabled="False"
+                                             Text="{Binding DataContext.CurrentSelectedDepartment.Id}"/>
+                                    <TextBox Name="TxtDDepartmnetName" Grid.Row="1" Grid.Column="1" Margin="5"
+                                             Text="{Binding DataContext.CurrentSelectedDepartment.Name}"/>
+                                </Grid>
+
+                                <DataGrid Grid.Row="1" Name="DataGridDDepartmentses" Margin="1"
+                                          RenderOptions.ClearTypeHint="Enabled"
+                                          TextOptions.TextFormattingMode="Display"
+                                          VerticalScrollBarVisibility="Visible"
+                                          CanUserAddRows="False"
+                                          CanUserDeleteRows="False"
+                                          MouseDoubleClick="DataGridDDepartmentses_MouseDoubleClick"
+                                          SelectionUnit="FullRow"
+                                          SelectedItem="{Binding DataContext.CurrentSelectedDepartment, Mode=TwoWay}"
+                                          ItemsSource="{Binding DataContext.Departmentses, Mode=TwoWay}"
+                                          AutoGenerateColumns="False">
+                                    <DataGrid.Columns>
+                                        <!--Column 1-->
+                                        <DataGridTextColumn Header="Id Відділу" Binding="{Binding Id}"/>
+
+                                        <!--Column 2-->
+                                        <DataGridTextColumn Header="Назва Відділу" Binding="{Binding Name}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                                <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,5,0,5">
+                                    <Button Name="DDepartmentBtnInsert" Content="Добавить" Width="60" Height="25" Margin="10,0,10,0" Click="DDepartmentBtnInsert_Click"/>
+                                    <Button Name="DDepartmentBtnEdit" Content="Обновить" Width="60" Height="25" Margin="0,0,10,0" Click="DDepartmentBtnEdit_Click" />
+                                    <Button Name="DDepartmentBtnDelete" Content="Удалить" Width="60" Height="25" Margin="0,0,10,0" Click="DDepartmentBtnDelete_Click" />
+                                </StackPanel>
+                              
+                            </Grid>
+                            
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="Робітники" HorizontalAlignment="Center" VerticalAlignment="Top" />
+
+                                <ListView  Grid.Row="1" Name="DpEmployeeList"  Margin="5,0,0,3" ItemsSource="{Binding DataContext.CurrentSelectedDepartment.Employees }" >
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}" Width="100">Імя</GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}">Прізвище</GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                            
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBlock Grid.Row="0" Text="Послуги" HorizontalAlignment="Center" VerticalAlignment="Top" />
+
+                                <ListView Grid.Row="1" Name="DpServiceList" Margin="3,0,3,3" ItemsSource="{Binding DataContext.CurrentSelectedDepartment.DpServices }" >
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">ID</GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="150">Назва</GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Path=ServicePrice}">Ціна</GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                            
+                        </Grid>
+                        <!--Row2-->
+                        <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Foreground="Aqua" Grid.Row="0" Grid.Column="0" Content="ID Послуги:" />
+                                    <Label Foreground="Aqua" Grid.Row="1" Grid.Column="0" Content="Назва:"/>
+                                    <Label Foreground="Aqua" Grid.Row="0" Grid.Column="2" Content="Відділ:"/>
+                                    <Label Foreground="Aqua" Grid.Row="1" Grid.Column="2" Content="Ціна:"/>
+                                    <TextBox Name="DpTxtServiceId" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="3" 
+                                     Text="{Binding DataContext.CurrentSelectedDpService.Id}"/>
+                                    <TextBox Name="DpTxtServiceName" Grid.Row="1" Grid.Column="1" Margin="3" 
+                                     Text="{Binding DataContext.CurrentSelectedDpService.Name}"/>
+                                    <TextBox Name="DpTxtServicePrice" Grid.Row="1" Grid.Column="3" Margin="3" 
+                                     Text="{Binding DataContext.CurrentSelectedDpService.ServicePrice}"/>
+                                    <ComboBox Name="DpCbbServiceDepartment" Grid.Row="0" Grid.Column="3" Margin="3" 
+                                      ItemsSource="{Binding DataContext.Departmentses}"
+                                      SelectedValuePath="Id" 
+                                      DisplayMemberPath="Name" 
+                                      SelectedValue="{Binding DataContext.CurrentSelectedDpService.DepartmentId}"/>
+                                    
+                                </Grid>
+
+                                <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,3,0,3">
+                                    <Button Name="DpBtnServiceInsert" Content="Добавить" Width="70" Height="25" Margin="0,0,40,0" Click="DpBtnServiceInsert_Click" />
+                                    <Button Name="DpBtnServiceEdit" Content="Обновить" Width="70" Height="25" Margin="0,0,20,0" Click="DpBtnServiceEdit_Click" />
+                                    <Button Name="DpBtnServiceDelete" Content="Удалить" Width="70" Height="25" Margin="20,0,0,0" Click="DpBtnServiceDelete_Click"/>
+                                </StackPanel>
+
+                            <DataGrid Grid.Row="2" Name="DpDataGridServices" Margin="10,0,10,10"
+                                  RenderOptions.ClearTypeHint="Enabled"
+                                  TextOptions.TextFormattingMode="Display"
+                                  VerticalScrollBarVisibility="Visible"
+                                  MouseDoubleClick="DpDataGridServices_MouseDoubleClick"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  SelectionUnit="FullRow"
+                                  SelectedItem="{Binding DataContext.CurrentSelectedDpService, Mode=TwoWay}"
+                                  ItemsSource="{Binding DataContext.DpServices, Mode=TwoWay}"
+                                  AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <!--Column 1-->
+                                    <DataGridTextColumn Header="Id Послуги" Binding="{Binding Id}"/>
+
+                                    <!--Column 2-->
+                                    <DataGridTextColumn Header="Назва" Binding="{Binding Name}"/>
+
+                                    <!--Column 3-->
+                                    <DataGridTextColumn Header="Ціна" Binding="{Binding ServicePrice}"/>
+
+                                    <!--Column 4-->
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate> 
+                                                <ComboBox ItemsSource="{Binding DataContext.Departmentses, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                      SelectedValuePath="Id" DisplayMemberPath="Name" SelectedValue="{Binding DepartmentId}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+                        </Grid>
+                        
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>            
+            
+            <!--Вкладка робітників-->
+            <TabItem x:Name="employeestab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image  Height="20" Width="20" Source="Themes/worker.png"/>
+                        <TextBlock Margin="3">Робітники</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>    
+                        </Grid.RowDefinitions>
+                        
+                        <!--Row1-->
+                        <Label Foreground="Aqua" Content="Робітники" HorizontalAlignment="Center" FontWeight="Black"/>
+                        
+                        <!--Row2-->
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Foreground="Aqua" Content="ID Робітника:" />
+                            <Label Grid.Row="1" Grid.Column="0" Foreground="Aqua" Content="Ім'я:"/>
+                            <Label Grid.Row="1" Grid.Column="2" Foreground="Aqua" Content="Прізвище:"/>
+                            <Label Grid.Row="2" Grid.Column="0" Foreground="Aqua" Content="День народження"/>
+                            <Label Grid.Row="2" Grid.Column="2" Foreground="Aqua" Content="ID Відділу:"/>
+                            <Label Grid.Row="0" Grid.Column="2" Foreground="Aqua" Content="Зарплата:"/>
+                            
+                            <TextBox Name="TxtId" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="5" 
+                                     Text="{Binding DataContext.CurrentSelectedEmployee.Id}"/>
+                            <TextBox Name="TxtFirstName" Grid.Row="1" Grid.Column="1" Margin="5" 
+                                     Text="{Binding DataContext.CurrentSelectedEmployee.FirstName}"/>
+                            <TextBox Name="TxtLastName" Grid.Row="1" Grid.Column="3" Margin="5" 
+                                     Text="{Binding DataContext.CurrentSelectedEmployee.LastName}"/>
+                            <DatePicker Name="DtpkBirthDay" Grid.Row="2" Grid.Column="1" Margin="5" 
+                                        SelectedDate="{Binding DataContext.CurrentSelectedEmployee.BirthDay}"/>
+                            <ComboBox Name="CbbDepartment" Grid.Row="2" Grid.Column="3" Margin="5" 
+                                      ItemsSource="{Binding DataContext.Departmentses}"
+                                      SelectedValuePath="Id" 
+                                      DisplayMemberPath="Name" 
+                                      SelectedValue="{Binding DataContext.CurrentSelectedEmployee.DepartmentId}"
+                                      />
+                            <TextBox Name="TxtSalary" Grid.Row="0" Grid.Column="3" IsEnabled="False" Margin="5" 
+                                     Text="{Binding DataContext.CurrentSelectedEmployee.Salary}"/>
+                        </Grid>
+                        
+                        <!--Row3-->
+                        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,10,0,10">
+                            <Button Name="BtnInsert" Content="Добавить" Width="70" Height="35" Margin="0,0,40,0" Click="BtnInsert_Click" />
+                            <Button Name="BtnEdit" Content="Обновить" Width="70" Height="35" Margin="0,0,20,0" Click="BtnEdit_Click" />
+                            <Button Name="BtnDelete" Content="Удалить" Width="70" Height="35" Margin="20,0,0,0" Click="BtnDelete_Click" />
+                            <Button Name="BtnNullSalary" Content="Обнулить зарплату" Width="120" Height="35" Margin="110,0,0,0" Click="BtnNullSalary_Click"/>
+                        </StackPanel>
+                        
+                        <!--Row4-->
+                        <DataGrid Grid.Row="3" Name="DataGrid1" Margin="10,0,10,10"
+                                  RenderOptions.ClearTypeHint="Enabled"
+                                  TextOptions.TextFormattingMode="Display"
+                                  VerticalScrollBarVisibility="Visible"
+                                  RowHeight="40"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  SelectionUnit="FullRow"
+                                  MouseDoubleClick="DataGrid1_MouseDoubleClick"
+                                  SelectedItem="{Binding DataContext.CurrentSelectedEmployee, Mode=TwoWay}"
+                                  ItemsSource="{Binding DataContext.Employees, Mode=TwoWay}"
+                                  AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <!--Column 1-->
+                                <DataGridTextColumn IsReadOnly="True" Header="Id" Binding="{Binding Id}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <!--Column 2-->
+                                <DataGridTextColumn IsReadOnly="True" Header="Ім'я" Binding="{Binding FirstName}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <!--Column 3-->
+                                <DataGridTextColumn IsReadOnly="True" Header="Прізвище" Binding="{Binding LastName}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>    
+                                
+                                <!--Column 4-->
+                                <DataGridTemplateColumn IsReadOnly="True" Header="Дата народження">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DatePicker IsEnabled="False" VerticalAlignment="Center" SelectedDate="{Binding BirthDay}" BorderThickness="0"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <!--Column 5-->
+                                <DataGridTemplateColumn Header="Відділ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox  Margin="0,5,0,5" IsEnabled="False" ItemsSource="{Binding DataContext.Departmentses, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                      SelectedValuePath="Id" DisplayMemberPath="Name" SelectedValue="{Binding DepartmentId}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <!--Column 6-->
+                                <DataGridTextColumn IsReadOnly="True" Header="Зарплата" Binding="{Binding Salary}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn> 
+
+                            </DataGrid.Columns>
+                          
+                        </DataGrid>
+                        
+                    </Grid>
+                </TabItem.Content>
+                
+            </TabItem>
+            
+            
+            
+        </TabControl>
+        
+        
+    </Grid>
+</Window>
